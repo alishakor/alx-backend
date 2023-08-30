@@ -27,8 +27,8 @@ def get_locale() -> str:
 # create route decorator
 @app.route('/', strict_slashes=False)
 def index() -> str:
-    """returns the 0-index.html page"""
-    return render_template("1-index.html")
+    """returns the 2-index.html page"""
+    return render_template("2-index.html")
 
 
 if __name__ == "__main__":

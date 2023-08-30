@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Flask app and babel class"""
 from flask_babel import Babel
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request
 # create the flask Instance
 app = Flask(__name__)
 
@@ -18,11 +17,18 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
+def get_locale() -> str:
+    """a function that best matches the language"""
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+babel.init_app(app, locale_selector=get_locale)
+
+
 # create route decorator
 @app.route('/', strict_slashes=False)
 def index() -> str:
-    """returns the 1-index.html page"""
-    return render_template("1-index.html")
+    """returns the 3-index.html page"""
+    return render_template("3-index.html")
 
 
 if __name__ == "__main__":
