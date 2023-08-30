@@ -17,6 +17,7 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
+@babel.localeselector
 def get_locale() -> str:
     """a function that best matches the language"""
     locale = request.args.get("locale")
@@ -26,7 +27,7 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-babel.init_app(app, locale_selector=get_locale)
+# babel.init_app(app, locale_selector=get_locale)
 
 
 # create route decorator
